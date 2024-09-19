@@ -1,0 +1,15 @@
+{
+	"name": "gravity",
+	"version": "1.0.0",
+	"main": "src/main.ts",
+	"type": "module",
+	"scripts": {
+		"build": "tsc && npm run build:cp-public",
+		"build:cp-public": "xcopy public dist /s /i /y ",
+		"type": "tsc --noEmit"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": ""
+}
