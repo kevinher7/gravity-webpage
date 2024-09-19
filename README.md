@@ -8,4 +8,4 @@ Just be sure to have the TypeScript compiler installed and the just run the buil
 
 `npm run build`
 
-This is a modified version of the original script that copies all the contents of the public folder (mainly `index.html`) into the dist folder.
+This is a modified version of the original script that compiles the ts code and copies all the contents of the public folder (mainly `index.html`) into the dist folder.

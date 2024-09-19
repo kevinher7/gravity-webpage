@@ -1,6 +1,7 @@
 import accelerateObject from "./accelerateObject.js";
+import stopCollapse from "./stopCollapse.js";
 
-const collapseObjects = () => {
+const collapseObjects = (intervalId: number) => {
 	const objectList: NodeListOf<HTMLDivElement> = document.querySelectorAll(
 		".added-button"
 	) as NodeListOf<HTMLDivElement>;
@@ -16,6 +17,12 @@ const collapseObjects = () => {
 			object.remove();
 		}
 	});
+
+	if (objectList.length === 0) {
+		stopCollapse();
+	}
+
+	console.log("collapsing");
 
 	return 0;
 };

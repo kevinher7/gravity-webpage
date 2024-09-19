@@ -3,11 +3,12 @@ import collapseObjects from "./collapseObjects.js";
 const frameRate: number = 120;
 const interval: number = 1000 / frameRate;
 
-export let movementParameters: [number, number] = [1, 0]; // currentTime, previousDeltaY
+export let intervalId: number[] = [0];
+export let movementParameters: number[] = [1, 0]; // currentTime, previousDeltaY
 
-const handleCollapse = (intervalId: number): number => {
-	if (!intervalId) {
-		intervalId = setInterval(collapseObjects, interval);
+const handleCollapse = (): number => {
+	if (intervalId[0] === 0) {
+		intervalId[0] = setInterval(collapseObjects, interval);
 	}
 
 	const collapseButton: HTMLDivElement = document.querySelectorAll(
@@ -17,7 +18,7 @@ const handleCollapse = (intervalId: number): number => {
 	collapseButton.className = "stop-collapse-button";
 	collapseButton.textContent = "Un-Collapse";
 
-	return intervalId;
+	return intervalId[0];
 };
 
 export default handleCollapse;
