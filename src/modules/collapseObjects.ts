@@ -1,18 +1,16 @@
-import stopCollapse from "./stopCollapse.js";
+import accelerateObject from "./accelerateObject.js";
 
-const collapseObjects = (intervalId: number) => {
-	const objectList: NodeListOf<HTMLElement> = document.querySelectorAll(
+const collapseObjects = () => {
+	const objectList: NodeListOf<HTMLDivElement> = document.querySelectorAll(
 		".added-button"
-	) as NodeListOf<HTMLElement>;
+	) as NodeListOf<HTMLDivElement>;
 
 	const windowHeight: number = window.innerHeight;
-	let currentTime: number = 0;
 
-	objectList.forEach((object: HTMLElement) => {
+	objectList.forEach((object: HTMLDivElement) => {
 		let yPosition: number = Number(object.style.top.slice(0, -2));
 
-		// add gravity acceleration
-		object.style.top = `${yPosition + 1}px`;
+		accelerateObject(object);
 
 		if (yPosition > windowHeight) {
 			object.remove();

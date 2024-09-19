@@ -1,15 +1,23 @@
-const gravityAcceleration = 5;
+import { movementParameters } from "./handleCollapse.js";
 
-const accelerateObject = (
-	object: HTMLDivElement,
-	currentTime: number
-): number => {
+const gravityAcceleration = 0.001;
+
+const accelerateObject = (object: HTMLDivElement): number => {
 	const currentYPosition: number = Number(object.style.top.slice(0, -2));
-	const deltaY: number = (gravityAcceleration * currentTime ** 2) / 2;
 
-	object.style.top = `${currentYPosition + deltaY}px`;
+	let [currentTime, previousDeltaY] = movementParameters;
 
-	return currentTime++;
+	const currentDeltaY: number =
+		(gravityAcceleration * currentTime ** 2) / 2 - previousDeltaY;
+
+	object.style.top = `${currentYPosition + currentDeltaY}px`;
+	// object.style.top = `${currentYPosition + 1}px`;
+
+	currentTime += 1;
+	movementParameters[0] = currentTime;
+	movementParameters[1] = currentDeltaY;
+
+	return 0;
 };
 
 export default accelerateObject;
